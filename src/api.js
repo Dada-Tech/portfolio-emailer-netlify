@@ -60,6 +60,38 @@ router.post("/mail", (req, res) => {
   res.send("email SENT");
 });
 
+
+
+router.get("/mail", (req, res) => {
+  const msg = {
+    to: 'daviddadaa@hotmail.com',
+    from: 'david-dada-portfolio@dadadavid.com',
+    subject: "testing netlify CLOUD",
+    text: "CLOUD",
+    html: '<strong>sent from Netlify ONLINE Server</strong>',
+  };
+
+  sgMail
+      .send(msg)
+      .then(() => {
+        //Celebrate
+        // console.log('Email Sent!');
+      })
+      .catch(error => {
+        //Log friendly error
+        console.error(error.toString());
+
+        //Extract error msg
+        const {message, code, response} = error;
+
+        //Extract response msg
+        const {headers, body} = response;
+      });
+
+  res.send("email SENTT");
+});
+
+
 app.use(`/.netlify/functions/api`, router);
 
 module.exports = app;
