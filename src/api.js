@@ -16,7 +16,8 @@ app.use(express.json());
 
 
 router.get("/", (req, res) => {
-  res.send("ok for now");
+  res.send(process.env.SENDGRID_API_KEY);
+  // res.send("ok for now");
 });
 
 router.post("/mail", (req, res) => {
